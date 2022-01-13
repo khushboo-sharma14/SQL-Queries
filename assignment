@@ -119,24 +119,6 @@ postgres-# full outer join employee_salary on employee_details.eid = employee_sa
 
 
 postgres=# --Q7
-postgres=# select upper(ename),lower(city)
-postgres-# from employee_details;
-  upper   |   lower
-----------+-----------
- KHUSHBOO | delhi
- ANKIT    | up
- SHIVA    | gurgaon
- SHAHAB   | lucknow
- RAHUL    | kanpur
- AKHILA   | hyderabad
- NUPUR    | mumbai
- DAKSH    | faridabad
- MEGHA    | pune
- ADITYA   | bangalore
-(10 rows)
-
-
-postgres=# --Q7
 postgres=# select upper(ename) as ENAME,lower(city) as City
 postgres-# from employee_details;
   ename   |   city
