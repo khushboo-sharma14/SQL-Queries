@@ -1,0 +1,97 @@
+create schema assignment;
+set search_path to assignment;
+
+-- table 1
+create table employee_details(
+eid int,
+ename varchar(20),
+manager_name varchar(20),
+manager_id int,
+project_id varchar(5),
+city text
+);
+
+-- table 2
+create table employee_salary(
+eid int,
+salary real);
+
+-- inserting data in table 1
+INSERT INTO employee_details
+values (101,'Khushboo','A',201,'P1','Delhi'),
+(102,'Ankit','B',202,'P2','UP'),
+(103,'Shiva','C',203,'P3','Gurgaon'),
+(104,'Shahab','D',204,'P1','Lucknow'),
+(105,'Rahul','E',205,'P2','Kanpur'),
+(106,'Akhila','A',201,'P3','Hyderabad'),
+(107,'Nupur','B',202,'P1','Mumbai'),
+(108,'Daksh','C',203,'P2','Faridabad'),
+(109,'Megha','D',204,'P3','Pune'),
+(110,'Aditya','E',205,'P4','Bangalore');
+
+-- inserting data in table 2
+INSERT INTO employee_salary
+values(101,20000),
+(102,30000),
+(103,40000),
+(104,50000),
+(105,35000),
+(106,19000),
+(107,34000),
+(108,67000),
+(109,70000),
+(110,45000);
+
+select * from employee_details
+select * from employee_salary
+
+-- Q1 (I took manager ids starting with 2 hence will find for 201)
+select eid, ename
+from employee_details
+where manager_id = 201;
+
+-- Q2
+select count(*) as Employees_in_P1
+from employee_details
+where project_id = 'P1';
+
+
+--Q3
+select max(salary) as Maximum, min(salary) as Minimum, Avg(salary) as Average
+from employee_salary;
+
+--Q4
+select eid
+from employee_salary
+where salary between 10000 and 15000;
+
+--Q5
+select eid, (salary+500) as New_Salary
+from employee_salary;
+
+
+--Q6
+select employee_details.eid
+from employee_details
+full outer join employee_salary on employee_details.eid = employee_salary.eid;
+
+--Q7
+select upper(ename),lower(city)
+from employee_details;
+
+--Q8
+select project_id,count(*)
+from employee_details
+group by project_id
+order by count(*) DESC;
+
+--Q9
+select *
+from employee_details
+where eid%2=1;
+
+--Q10
+select salary
+from employee_salary
+order by salary DESC
+limit 1 offset 2;
